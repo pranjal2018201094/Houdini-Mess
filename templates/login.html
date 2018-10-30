@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet type=text/css media="all" href='{{url_for("static", filename="style.css")}}'>
+</head>
+<body>
+
+<ul class="topnav">
+  <li><a href="home.html">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li class="right"><a href="#about">About</a></li>
+</ul>
+
+<div align="center" style="padding:0 16px;">
+<br>
+<h1>MESS-PORTAL<h1>
+<hr>
+</div>
+
+<div class="row">
+  <div class="column" align="center">
+  <div class="card" align="center">
+     
+  </div>
+  </div>
+  <div class="column" align="center">
+  <div class="cardbig" align="center">
+      <div class="container">
+          
+          <form action="/home" method="post" style="border:1px solid #ccc">
+            <div class="container">
+              <h1>Login</h1>
+              <hr>
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Username" name="username" id="username" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+              <label>
+                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+              </label>
+              <div class="clearfix">
+                <button type="submit" class="signupbtn">Login</button>
+                <button type="button" class="cancelbtn"><a href="/register">Register</a></button>
+              </div>
+            </div>
+          </form>
+          
+      </div>
+  </div>
+  </div>
+  <div class="column" align="center">
+  <div class="card" align="center">
+      
+  </div>
+  </div>
+</div>
+</body>
+</html>

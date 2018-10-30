@@ -1,0 +1,23 @@
+<html lang="en">
+  <head>
+    <title>
+      "Sample login application"
+    </title>
+    <link rel=stylesheet type=text/css media="all" href='{{url_for("static", filename="main.css")}}'>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+	<h2 style="text-align:center;"/>Login application for user authentication<br><br><br>
+      </div>
+      <div style="text-align:center;" id = "contents">
+         {%block content%}
+         {% endblock %}
+      </div>
+      <div id = "footer">
+	 <br><br><br>
+	 <h2 style="text-align:center;"/><p/> copyright &copy; authenticate 
+      </div>
+      
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet type=text/css media="all" href='{{url_for("static", filename="style.css")}}'>
+</head>
+<body>
+
+	<ul class="topnav">
+	<li><a href="home.html">Home</a></li>
+	<li><a href="#news">News</a></li>
+	<li><a href="#contact">Contact</a></li>
+	<li class="right"><a href="#about">About</a></li>
+	</ul>
+		<h1 style="text-align:center;">Register For Mess</h1>
+			<div class="box">
+				<form action="/register" method="post">
+					<input type="text" name="username" id="username" placeholder="Username" required/>
+					<br>
+					<input type="text" name="name" id="name" placeholder="Name" required/>
+					<br>
+					<input type="password" name="password" id="password" placeholder="Password" required/>
+					<br>
+					<br>
+					<label style="margin-left: 80px;">Default Breakfast Mess:</label>
+					<select name="defaultb" id="defaultb" style="width:108px">
+						<option value="north">North</option>
+						<option value="east">East</option>
+						<option value="west">West</option>
+						<option value="south">South</option>
+					</select><br>
+					<label style="margin-left: 80px;">Default Lunch Mess:</label>
+					<select name="defaultl" id="defaultl" style="width:108px">
+							<option value="north">North</option>
+							<option value="east">East</option>
+							<option value="west">West</option>
+							<option value="south">South</option>
+						</select><br>
+						<label style="margin-left: 80px;">Default Snacks Mess:</label>
+						<select name="defaults" id="defaults" style="width:108px">
+								<option value="north">North</option>
+								<option value="east">East</option>
+								<option value="west">West</option>
+								<option value="south">South</option>
+							</select><br>
+							<label style="margin-left: 80px;">Default Dinner Mess:</label>
+							<select name="defaultd" id="defaultd" style="width:108px">
+									<option value="north">North</option>
+									<option value="east">East</option>
+									<option value="west">West</option>
+									<option value="south">South</option>
+								</select><br>
+					<input type="submit" class="button" value="Register"/>
+				</form>
+			</div>
+				
+</body>
+</html>

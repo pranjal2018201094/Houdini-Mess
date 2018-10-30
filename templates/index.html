@@ -1,0 +1,14 @@
+{%extends 'base.html' %}
+{%block content%}
+     {%if logged_in %}
+       <h2>Logged in as  {{username}}! </h2>
+       <br> 
+       <b><a href = '/logout'><b/>click here to log out</a></b>
+     {%else%}
+       <h2>You are not logged in! </h2>
+       <br>
+       <a href = '/login'><b/> click here to log in</a>
+       {%endif%}
+{% endblock %}
+
+

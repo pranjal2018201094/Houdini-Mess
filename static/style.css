@@ -1,0 +1,170 @@
+
+body {margin: 0;}
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #01796F;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.card {
+            background-color: #01796F;
+            border-radius: 10px;
+            box-shadow: -10px -10px 10px 0px rgba(10,0,0,1);
+            transition: .5s;
+            width: 300px;
+            height: 300px;
+            margin-right: 0px;
+        }
+
+.cardbig {
+            background-color: #01796F;
+            border-radius: 10px;
+            box-shadow: -10px -10px 10px 0px rgba(10,0,0,1);
+            transition: 1s;
+            width: 400px;
+            height: 400px;
+            margin-right: 0px;
+        }
+
+
+.cardbig2 {
+            background-color: #01796F;
+            border-radius: 10px;
+            box-shadow: -10px -10px 10px 0px rgba(10,0,0,1);
+            transition: 1s;
+            width: 400px;
+            height: 450px;
+            margin-right: 0px;
+        }
+
+.card:hover {
+    box-shadow: -22px -22px 22px 0 rgba(10,5,5,5);
+    -ms-transform: scale(1.3); /* IE 9 */
+    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    transform: scale(1.15); 
+}
+
+.container {
+        padding: 5px 5px;
+    }
+
+.column {
+  float: right;
+  width: 33.33%;
+  padding: 0px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+}
+
+.box {
+  margin: 20px auto;
+  width: 310px; 
+  height: 310px; 
+  -webkit-border-radius: 8px/7px; 
+  -moz-border-radius: 8px/7px; 
+  border-radius: 8px/7px; 
+  background-color: white; 
+  -webkit-box-shadow: 1px 2px 5px grey; 
+  -moz-box-shadow: 1px 2px 5px grey; 
+  box-shadow: 1px 2px 5px grey; 
+  border: solid 1px grey;
+}

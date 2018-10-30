@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel=stylesheet type=text/css media="all" href='{{url_for("static", filename="style.css")}}'>
+</head>
+<body>
+
+<ul class="topnav">
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li class="right"><a href="#about">About</a></li>
+</ul>
+
+<div align="center" style="padding:0 16px;">
+<br>
+<h1>MESS-PORTAL<h1>
+<hr>
+</div>
+
+<div class="row">
+  <div class="column" align="center">
+  <div class="card" align="center">
+      <div class="container">
+          
+          <h2>Change Registration</h2>
+          <hr>
+          <h2>View Registration</h2>
+          <hr>
+          <h2>View Bill</h2>
+          <hr>
+          <h2>Complaints/Feedback</h2>
+
+      </div>
+  </div>
+  </div>
+  <div class="column" align="center">
+  <div class="cardbig2" align="center">
+      <div class="container">
+          
+          <h3>Username: {{row[0]}}</h3>
+          <h3>Name: {{row[7]}}</h3>
+          <h2>Todays Meal</h2>
+          <h3>Breakfast: </h3>
+          <h3>Lunch: </h3>
+          <h3>Dinner: </h3>
+          <h2>Cancellation Timings</h2>
+          <h3>Breakfast</h3>
+          <h3>Lunch</h3>
+          <h3>Dinner</h3>
+          
+      </div>
+  </div>
+  </div>
+  <div class="column" align="center">
+  <div class="card" align="center">
+      <div class="container">
+          <h1>Mess Menu</h1>
+          <hr>
+          <h2>North</h2>
+          <h2>South</h2>
+          <h2>Yuktahar</h2>
+          <h2>Kadamb</h2>
+          
+      </div>
+  </div>
+  </div>
+</div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("navbar");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+</script>
+
+</body>
+</html>
