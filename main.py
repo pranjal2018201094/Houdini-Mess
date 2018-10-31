@@ -29,12 +29,42 @@ def login():
             msg = "successful login"
             rows = dbHandler.retrievePerson(session['username'])
             print rows
-            return render_template("home.html", row=rows)
+            return render_template("home.html",row=rows)
         else: 
             msg ="login failed"
     return(render_template("login.html"))
+############################# home/change_registration ##################
+@app.route('/home/change_registration',methods=['GET','POST'])
+def change_registration():
+    if 'username' in session:
+        return render_template('change_registration.html')
+    else:
+        return redirect(url_for('login'))
+############################# home/change_registration ##################
+@app.route('/home/view_registration',methods=['GET','POST'])
+def view_registration():
+    if 'username' in session:
+        return render_template('view_registration.html')
+    else:
+        return redirect(url_for('login'))
 
+############################# home/change_registration ##################
+@app.route('/home/view_bill',methods=['GET','POST'])
+def view_bill():
+    if 'username' in session:
+        return render_template('view_bill.html')
+    else:
+        return redirect(url_for('login'))
 
+############################# home/change_registration ##################
+@app.route('/home/feedback',methods=['GET','POST'])
+def feedback():
+    if 'username' in session:
+        return render_template('feedback.html')
+    else:
+        return redirect(url_for('login'))
+
+####################### home #################################################
 @app.route('/home', methods=['GET','POST'])
 def home():
     if 'username' in session:
@@ -64,7 +94,7 @@ def logout():
     if 'username' in session:
         session.pop('username')
     
-    return render_template("login.html", message="You are already logged out.")
+    return redirect(url_for('login'))
 
 ######################### register ################################################
 @app.route('/register', methods=['POST', 'GET'])

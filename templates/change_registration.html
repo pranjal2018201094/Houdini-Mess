@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel=stylesheet type=text/css media="all" href='{{url_for("static", filename="style.css")}}'>
+</head>
+<body>
+
+<ul class="topnav">
+    <li><p class="us-name"> Hello, {{session['username']}}</p></li>
+    <li><a href='{{url_for("home")}}'>Home</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li class="right"><a href="#about">About</a></li>
+</ul>
+
+<div align="center" style="padding:0 16px;">
+<br>
+<h1>MESS-PORTAL<h1>
+<hr>
+</div>
+<div align="center" style="padding:0 16px;">
+<h1>CHANGE REGISTRATION</h1>
+</div>
+
+</body>
+</html>
