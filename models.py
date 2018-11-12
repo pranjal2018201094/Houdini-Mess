@@ -51,6 +51,206 @@ def insertUser(request):
     con.close()
     return not row
 
+def cancelMeal(request,username):
+    drange = (request.form['daterange'].encode("ascii"))
+    dates = drange.split('-')
+    
+    start = dates[0].strip()
+    start = start.replace('/','-')
+    end =  dates[1].strip()
+    end = end.replace('/','-')
+    print start
+    change = []
+    try :
+        request.form['b']
+        change.append(0)
+    except :
+        pass
+    try :
+        request.form['l']
+        change.append(1)
+    except :
+        pass
+    try :
+        request.form['s']
+        change.append(2)
+    except :
+        pass
+    try :
+        request.form['d']
+        change.append(3)
+    except :
+        pass
+    # print change
+    con = sql.connect("user.db")
+    sqlQuery = "select * from user_info where username = '%s'"%username
+    cursor = con.cursor()
+    cursor.execute(sqlQuery)
+    row = cursor.fetchone()
+    dictionary = ast.literal_eval(row[6])
+    sdate = datetime.datetime.strptime(start,"%d-%m-%Y")
+    edate = datetime.datetime.strptime(end,"%d-%m-%Y")
+    print type(sdate)
+    dayst = (edate-sdate)
+    t = dayst.days+1
+    i =0
+    print start
+    print end
+    print t
+    while i<t:
+        dstr = sdate.strftime("%d-%m-%Y")
+        sdate += datetime.timedelta(days=1)
+        prev = dictionary[dstr]
+        for x in change:
+            prev[x] = 'Cancelled'
+        dictionary[dstr]=prev
+        print(dictionary[dstr])
+        i=i+1
+
+    con = sql.connect("user.db")
+    cur=con.cursor()
+    sqlq ="UPDATE user_info SET mess_reg = ? WHERE (username = ?)"
+    cur.execute(sqlq,(str(dictionary),username))
+    con.commit()
+    con.close()
+    calendarGenerate(username)
+    
+  
+
+def changeRegistrationDatewise(request,username):
+    drange = (request.form['daterange'].encode("ascii"))
+    dates = drange.split('-')
+    start = dates[0].strip()
+    start = start.replace('/','-')
+    end =  dates[1].strip()
+    end = end.replace('/','-')
+    print start
+    change = []
+    try :
+        request.form['b']
+        change.append(0)
+    except :
+        pass
+    try :
+        request.form['l']
+        change.append(1)
+    except :
+        pass
+    try :
+        request.form['s']
+        change.append(2)
+    except :
+        pass
+    try :
+        request.form['d']
+        change.append(3)
+    except :
+        pass
+    # print change
+    mess_val = request.form['options']
+    con = sql.connect("user.db")
+    sqlQuery = "select * from user_info where username = '%s'"%username
+    cursor = con.cursor()
+    cursor.execute(sqlQuery)
+    row = cursor.fetchone()
+    dictionary = ast.literal_eval(row[6])
+    sdate = datetime.datetime.strptime(start,"%d-%m-%Y")
+    edate = datetime.datetime.strptime(end,"%d-%m-%Y")
+    print type(sdate)
+    dayst = (edate-sdate)
+    t = dayst.days+1
+    i =0
+    print start
+    print end
+    print t
+    while i<t:
+        dstr = sdate.strftime("%d-%m-%Y")
+        sdate += datetime.timedelta(days=1)
+        prev = dictionary[dstr]
+        for x in change:
+            prev[x] = mess_val
+        dictionary[dstr]=prev
+        print(dictionary[dstr])
+        i=i+1
+
+    con = sql.connect("user.db")
+    cur=con.cursor()
+    sqlq ="UPDATE user_info SET mess_reg = ? WHERE (username = ?)"
+    cur.execute(sqlq,(str(dictionary),username))
+    con.commit()
+    con.close()
+    calendarGenerate(username)
+
+
+
+def changeRegistrationDaywise(request,username):
+    # drange = (request.form['daterange'].encode("ascii"))
+    # dates = drange.split('-')
+    # start = dates[0].strip()
+    # start = start.replace('/','-')
+    # end =  dates[1].strip()
+    # end = end.replace('/','-')
+    # print start
+    change = []
+    try :
+        request.form['b']
+        change.append(0)
+    except :
+        pass
+    try :
+        request.form['l']
+        change.append(1)
+    except :
+        pass
+    try :
+        request.form['s']
+        change.append(2)
+    except :
+        pass
+    try :
+        request.form['d']
+        change.append(3)
+    except :
+        pass
+    # print change
+    start =datetime.datetime.today()
+    week = (request.form['day'].encode("ascii"))
+    print(type(week))
+    print week
+    while start.weekday() != int(week): #0 for monday
+        start += datetime.timedelta(days=1)
+    print start
+    mess_val = request.form['options']
+    con = sql.connect("user.db")
+    sqlQuery = "select * from user_info where username = '%s'"%username
+    cursor = con.cursor()
+    cursor.execute(sqlQuery)
+    row = cursor.fetchone()
+    dictionary = ast.literal_eval(row[6])
+    sdate = start
+    edate = datetime.datetime(2019,7,31,12,4,5)
+    print type(sdate)
+    i =0
+    print start
+    print edate
+    while (edate-sdate).days >0:
+        dstr = sdate.strftime("%d-%m-%Y")
+        sdate += datetime.timedelta(weeks=1)
+        prev = dictionary[dstr]
+        for x in change:
+            prev[x] = mess_val
+        dictionary[dstr]=prev
+        print(dictionary[dstr])
+        i=i+1
+
+    con = sql.connect("user.db")
+    cur=con.cursor()
+    sqlq ="UPDATE user_info SET mess_reg = ? WHERE (username = ?)"
+    cur.execute(sqlq,(str(dictionary),username))
+    con.commit()
+    con.close()
+    calendarGenerate(username)
+    
 
 def authenticate(request):
     con = sql.connect("user.db")

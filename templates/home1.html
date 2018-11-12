@@ -14,12 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href='{{url_for("static", filename="flip.css")}}'>
 
-    <!-- <link rel="stylesheet" type="text/css" href='{{url_for("static", filename="image_upload.css")}}'> -->
-
-    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    
+    <link rel="stylesheet" type="text/css" href='{{url_for("static", filename="image_upload.css")}}'>
 
     <link href='{{url_for("static", filename="vendor/bootstrap/css/bootstrap.min.css")}}' rel="stylesheet">
 
@@ -89,7 +84,7 @@
                 <h3>Cancellation Timings</h3>
                 <h4>Breakfast ::&nbsp&nbspPrevious Day : 5:00:00 pm</h4>
                 <h4>Lunch&nbsp     ::&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSame Day : 07:00:00 am</h4>
-                <h4>Dinner ::&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSame Day : 3:00:00 pm</h4>
+                <h4>Dinner ::&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSame Day : 15:00:00 am</h4>
               </div>
             </div>
 
@@ -158,8 +153,8 @@
                   
       </div>
       <div style="margin: 0px 200px;">
-        <a class="btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href='{{url_for("cancel")}}'>Cancel Meals</a>
-        <a class="btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href='{{url_for("changeReg")}}'>Change Mess Registration</a>
+        <a class="portfolio-item d-block mx-auto btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href="#cancel">Cancel Meals</a>
+        <a class="portfolio-item d-block mx-auto btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href="#change">Change Mess Registration</a>
         <a class="btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href='{{url_for("calendar")}}'>View Mess Registration</a>
         <a class="portfolio-item d-block mx-auto btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href="#bill">View Mess Bill</a>
       </div>
@@ -198,23 +193,21 @@
                   <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                   <p class="help-block text-danger"></p>
                 </div>
-             <!--  </div>
-              
-              <div class="container"> -->
-                <div class="col-md-6">
-                  <div class="form-group">
-                      <label>Upload Image</label>
-                      <div class="input-group">
-                          <span class="input-group-btn">
-                              <span class="btn btn-default btn-file">
-                              Browse… <input type="file" id="imgInp">
-                              </span>
-                          </span>
-                          <input type="text" class="form-control" readonly>
+              </div>
+              <div class="container_x">
+                  <h1>jQuery Image Upload 
+                      <small>with preview</small>
+                  </h1>
+                  <div class="avatar-upload">
+                      <div class="avatar-edit">
+                          <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                          <label for="imageUpload"></label>
                       </div>
-                      <img id='img-upload'/>
+                      <div class="avatar-preview">
+                          <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                          </div>
+                      </div>
                   </div>
-                </div>
               </div>
 
               <div id="success"></div>
@@ -473,7 +466,7 @@
     </div>
 
     <!-- Portfolio Modal 2 -->
-       <div class="portfolio-modal mfp-hide" id="south">
+        <div class="portfolio-modal mfp-hide" id="south">
       <div class="portfolio-modal-dialog bg-white">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
@@ -1013,13 +1006,64 @@
 
 
 
-
     <!-- ..................MESS MENU END.............................................. -->
 
 
     <!-- ..................CONTROL CENTER.............................................. -->
 
+    <div class="portfolio-modal mfp-hide" id="cancel">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Cancel Meals</h2>
+              <hr class="star-dark mb-5">
 
+              <form>
+                  <hr class="hr">
+                  <div>
+                  <input style="border-radius: 10px;" type="text" size="22px" name="daterange"/>
+                  </div>
+                  <br>
+                  <div align="left" style="margin-left: 45%">   
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Breakfast</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Lunch</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Snacks</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Dinner</label>
+                      </div>
+                  </div>
+                  <br>
+                  <div class="dropdown btn-lg">
+                      <select>
+                        <option value="North">North</option>
+                        <option value="South">South</option>
+                        <option value="East">East</option>
+                        <option value="West">West</option>
+                      </select>
+                  </div>
+                  <br>
+                  <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+              <hr class="hr">
+              <br>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="portfolio-modal mfp-hide" id="change">
       <div class="portfolio-modal-dialog bg-white">
@@ -1146,7 +1190,26 @@
       </div>
     </div>
 
- 
+    <div class="portfolio-modal mfp-hide" id="register">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <hr class="star-dark mb-5">
+              <img class="img-fluid mb-5" src="/static/img/portfolio/game.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="portfolio-modal mfp-hide" id="bill">
       <div class="portfolio-modal-dialog bg-white">
@@ -1218,41 +1281,20 @@
     </script> 
 
     <script type="text/javascript">
-      $(document).ready( function() {
-            $(document).on('change', '.btn-file :file', function() {
-          var input = $(this),
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-          input.trigger('fileselect', [label]);
-          });
-
-          $('.btn-file :file').on('fileselect', function(event, label) {
-              
-              var input = $(this).parents('.input-group').find(':text'),
-                  log = label;
-              
-              if( input.length ) {
-                  input.val(log);
-              } else {
-                  if( log ) alert(log);
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                  $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                  $('#imagePreview').hide();
+                  $('#imagePreview').fadeIn(650);
               }
-            
-          });
-          function readURL(input) {
-              if (input.files && input.files[0]) {
-                  var reader = new FileReader();
-                  
-                  reader.onload = function (e) {
-                      $('#img-upload').attr('src', e.target.result);
-                  }
-                  
-                  reader.readAsDataURL(input.files[0]);
-              }
+              reader.readAsDataURL(input.files[0]);
           }
-
-          $("#imgInp").change(function(){
-              readURL(this);
-          });   
-        });
+      }
+      $("#imageUpload").change(function() {
+          readURL(this);
+      });
     </script>
 
   </body>

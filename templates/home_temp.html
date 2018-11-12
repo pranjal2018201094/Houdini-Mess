@@ -14,13 +14,6 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href='{{url_for("static", filename="flip.css")}}'>
 
-    <!-- <link rel="stylesheet" type="text/css" href='{{url_for("static", filename="image_upload.css")}}'> -->
-
-    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    
-
     <link href='{{url_for("static", filename="vendor/bootstrap/css/bootstrap.min.css")}}' rel="stylesheet">
 
     <link href='{{url_for("static", filename="vendor/fontawesome-free/css/all.min.css")}}' rel="stylesheet" type="text/css">
@@ -89,7 +82,7 @@
                 <h3>Cancellation Timings</h3>
                 <h4>Breakfast ::&nbsp&nbspPrevious Day : 5:00:00 pm</h4>
                 <h4>Lunch&nbsp     ::&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSame Day : 07:00:00 am</h4>
-                <h4>Dinner ::&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSame Day : 3:00:00 pm</h4>
+                <h4>Dinner ::&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSame Day : 15:00:00 am</h4>
               </div>
             </div>
 
@@ -157,9 +150,9 @@
         
                   
       </div>
-      <div style="margin: 0px 200px;">
-        <a class="btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href='{{url_for("cancel")}}'>Cancel Meals</a>
-        <a class="btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href='{{url_for("changeReg")}}'>Change Mess Registration</a>
+      <div style="margin: 0px 50px;">
+        <a class="portfolio-item d-block mx-auto btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href="#cancel">Cancel Meals</a>
+        <a class="portfolio-item d-block mx-auto btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href="#change">Change Mess Registration</a>
         <a class="btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href='{{url_for("calendar")}}'>View Mess Registration</a>
         <a class="portfolio-item d-block mx-auto btn btn-outline-light btn-xl btn-block" role="button" aria-pressed="true" href="#bill">View Mess Bill</a>
       </div>
@@ -174,6 +167,22 @@
           <div class="col-lg-8 mx-auto">
            
             <form name="sentMessage" id="contactForm" novalidate="novalidate">
+             
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                  <div class="dropdown">
+                      <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select Mess
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" type="button">North</button>
+                        <button class="dropdown-item" type="button">South</button>
+                        <button class="dropdown-item" type="button">East</button>
+                        <button class="dropdown-item" type="button">West</button>
+                      </div>
+                   </div>
+                </div>
+              </div>
               
               <div class="control-group">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -198,32 +207,13 @@
                   <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
                   <p class="help-block text-danger"></p>
                 </div>
-             <!--  </div>
-              
-              <div class="container"> -->
-                <div class="col-md-6">
-                  <div class="form-group">
-                      <label>Upload Image</label>
-                      <div class="input-group">
-                          <span class="input-group-btn">
-                              <span class="btn btn-default btn-file">
-                              Browse… <input type="file" id="imgInp">
-                              </span>
-                          </span>
-                          <input type="text" class="form-control" readonly>
-                      </div>
-                      <img id='img-upload'/>
-                  </div>
-                </div>
               </div>
-
+              <br>
               <div id="success"></div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg" id="sendMessageButton">Send</button>
               </div>
-
             </form>
-
           </div>
         </div>
       </div>
@@ -306,7 +296,7 @@
 
               <div class="container">
                 <div class="row">
-                <div class="col-sm-4" style="margin-bottom: 30px;">
+                <div class="col-sm" style="margin-bottom: 30px;">
                       <div class="flip">
                         <div class="card"> 
                           <div class="face front"> 
@@ -328,7 +318,7 @@
                         </div>   
                       </div>
                     </div>
-                  <div class="col-sm-4" style="margin-bottom: 30px;">
+                  <div class="col-sm" style="margin-bottom: 30px;">
                       <div class="flip">
                         <div class="card"> 
                           <div class="face front"> 
@@ -350,7 +340,7 @@
                         </div>   
                       </div>
                     </div>
-                  <div class="col-sm-4" style="margin-bottom: 30px;">
+                  <div class="col-sm" style="margin-bottom: 30px;">
                       <div class="flip">
                         <div class="card"> 
                           <div class="face front"> 
@@ -372,7 +362,7 @@
                         </div>   
                       </div>
                     </div>
-                  <div class="col-sm-4" style="margin-bottom: 30px;">
+                  <div class="col-sm" style="margin-bottom: 30px;">
                       <div class="flip">
                         <div class="card"> 
                           <div class="face front"> 
@@ -394,7 +384,7 @@
                         </div>   
                       </div>
                     </div>
-                  <div class="col-sm-4" style="margin-bottom: 30px;">
+                  <div class="col-sm" style="margin-bottom: 30px;">
                       <div class="flip">
                         <div class="card"> 
                           <div class="face front"> 
@@ -416,7 +406,7 @@
                         </div>   
                       </div>
                     </div>
-                  <div class="col-sm-4" style="margin-bottom: 30px;">
+                  <div class="col-sm" style="margin-bottom: 30px;">
                       <div class="flip">
                         <div class="card"> 
                           <div class="face front"> 
@@ -473,7 +463,7 @@
     </div>
 
     <!-- Portfolio Modal 2 -->
-       <div class="portfolio-modal mfp-hide" id="south">
+        <div class="portfolio-modal mfp-hide" id="south">
       <div class="portfolio-modal-dialog bg-white">
         <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
           <i class="fa fa-3x fa-times"></i>
@@ -1012,14 +1002,33 @@
     </div>
 
 
-
-
     <!-- ..................MESS MENU END.............................................. -->
 
 
     <!-- ..................CONTROL CENTER.............................................. -->
 
+    <div class="portfolio-modal mfp-hide" id="cancel">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Cancel Meals</h2>
+              <hr class="star-dark mb-5">
+              
+              <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
 
+
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="portfolio-modal mfp-hide" id="change">
       <div class="portfolio-modal-dialog bg-white">
@@ -1031,112 +1040,8 @@
             <div class="col-lg-8 mx-auto">
               <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
               <hr class="star-dark mb-5">
-              
-              <form>
-                <h2 class="h2">Date-Wise</h2>
-                  <div>
-                  <input style="border-radius: 10px;" type="text" size="22px" name="daterange"/>
-                  </div>
-                  <br>
-                  <div align="left" style="margin-left: 45%">   
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Breakfast</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Lunch</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Snacks</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Dinner</label>
-                      </div>
-                  </div>
-                  <br>
-                  <div class="dropdown btn-lg">
-                      <select>
-                        <option value="North">North</option>
-                        <option value="South">South</option>
-                        <option value="East">East</option>
-                        <option value="West">West</option>
-                      </select>
-                  </div>
-                  <br>
-                  <button type="submit" class="btn btn-default">Submit</button>
-              </form>
-              <hr class="hr">
-              
-              <form>
-                <h2 class="h2">Day-Wise</h2>
-                  <div>
-                      <div class="dropdown btn-lg">
-                          <select>
-                            <option value="North">Monday</option>
-                            <option value="South">Tuesday</option>
-                            <option value="East">Wednesday</option>
-                            <option value="West">Thursday</option>
-                            <option value="South">Friday</option>
-                            <option value="East">Saturday</option>
-                            <option value="West">Sunday</option>
-                          </select>
-                      </div>
-                      <div class="dropdown btn-lg">
-                          <select>
-                            <option value="Breakfast">Breakfast</option>
-                            <option value="Lunch">Lunch</option>
-                            <option value="Snacks">Snacks</option>
-                            <option value="Dinner">Dinner</option>
-                          </select>
-                      </div>
-                      <div class="dropdown btn-lg">
-                          <select>
-                            <option value="North">North</option>
-                            <option value="South">South</option>
-                            <option value="East">East</option>
-                            <option value="West">West</option>
-                          </select>
-                      </div>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-default">Submit</button>
-              </form>
-              <hr class="hr">
-              
-              <form>
-                <h2 class="h2">Day-Wise</h2>
-                  <div>
-                      <div class="dropdown btn-lg">
-                          <select>
-                            <option value="North">North</option>
-                            <option value="South">South</option>
-                            <option value="East">East</option>
-                            <option value="West">West</option>
-                          </select>
-                      </div>
-                      <div class="dropdown btn-lg">
-                          <select>
-                            <option value="January">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
-                          </select>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Deregister</label>
-                      </div>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-default">Submit</button>
-              </form>
-              <hr class="hr">
+              <img class="img-fluid mb-5" src="/static/img/portfolio/game.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
               <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                 <i class="fa fa-close"></i>
                 Close Project</a>
@@ -1146,7 +1051,26 @@
       </div>
     </div>
 
- 
+    <div class="portfolio-modal mfp-hide" id="register">
+      <div class="portfolio-modal-dialog bg-white">
+        <a class="close-button d-none d-md-block portfolio-modal-dismiss" href="#">
+          <i class="fa fa-3x fa-times"></i>
+        </a>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h2 class="text-secondary text-uppercase mb-0">Project Name</h2>
+              <hr class="star-dark mb-5">
+              <img class="img-fluid mb-5" src="/static/img/portfolio/game.png" alt="">
+              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+              <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
+                <i class="fa fa-close"></i>
+                Close Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="portfolio-modal mfp-hide" id="bill">
       <div class="portfolio-modal-dialog bg-white">
@@ -1204,56 +1128,15 @@
       });
     </script>
 
-    <script>
+<script>
       $(function() {
         $('input[name="daterange"]').daterangepicker({
-          timePicker: false,
-          startDate: moment(),
-          endDate: moment(),
-          locale: {
-            format: 'DD/MM/YYYY'
-          }
+          opens: 'left'
+        }, function(start, end, label) {
+          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
       });
-    </script> 
-
-    <script type="text/javascript">
-      $(document).ready( function() {
-            $(document).on('change', '.btn-file :file', function() {
-          var input = $(this),
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-          input.trigger('fileselect', [label]);
-          });
-
-          $('.btn-file :file').on('fileselect', function(event, label) {
-              
-              var input = $(this).parents('.input-group').find(':text'),
-                  log = label;
-              
-              if( input.length ) {
-                  input.val(log);
-              } else {
-                  if( log ) alert(log);
-              }
-            
-          });
-          function readURL(input) {
-              if (input.files && input.files[0]) {
-                  var reader = new FileReader();
-                  
-                  reader.onload = function (e) {
-                      $('#img-upload').attr('src', e.target.result);
-                  }
-                  
-                  reader.readAsDataURL(input.files[0]);
-              }
-          }
-
-          $("#imgInp").change(function(){
-              readURL(this);
-          });   
-        });
-    </script>
+</script> 
 
   </body>
 

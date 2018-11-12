@@ -45,14 +45,52 @@ def return_data():
 
 ###################################################################################
     
-@app.route('/ptry', methods=['GET','POST'])
-def ptry():
+@app.route('/cancel', methods=['GET','POST'])
+def cancel():
+    if request.method=='POST':
+            if dbHandler.cancelMeal(request,session['username']):
+                msg = "success in changes"
+                return render_template("cancel.html",message=msg)
+            else:
+                msg = "failed to make changes"
+                return render_template("cancel.html", message=msg)    
+    if 'username' in session:
+        return render_template("cancel.html")
+    return redirect(url_for('login'))
 
-    return render_template("try.html")
 
-# return redirect(url_for('login'))
+
+
+##############################################################################
+
+@app.route('/changeReg', methods=['GET','POST'])
+def changeReg():
+    if request.method=='POST':
+        if request.form['action']=='datewise':
+                if dbHandler.changeRegistrationDatewise(request,session['username']):
+                    msg = "success in changes"
+                    return render_template("changeReg.html",message=msg)
+                else:
+                    msg = "failed to make changes"
+                    return render_template("changeReg.html", message=msg)    
+
+        if request.form['action']=='daywise':
+            if dbHandler.changeRegistrationDaywise(request,session['username']):
+                msg = "success in changes"
+                return render_template("changeReg.html",message=msg)
+            else:
+                msg = "failed to make changes"
+                return render_template("changeReg.html", message=msg)    
+    if 'username' in session:
+        return render_template("changeReg.html")
+    else :
+        return redirect(url_for('login'))
+
 
 ###################### root ##################################################
+
+
+
 @app.route('/')
 def index():
    if 'username' in session:
@@ -66,7 +104,7 @@ def index():
 def login():
     if 'username' in session:
         return redirect(url_for('home'))
-    elif request.method == 'POST':
+    if request.method == 'POST':
         if dbHandler.authenticate(request): 
             session['username'] = request.form['username']
             
