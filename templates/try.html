@@ -19,14 +19,60 @@
 
 
 <script type="text/javascript">
+      // $(function() {
+      //   $('input[name="daterange"]').daterangepicker({
+      //     opens: 'left'
+      //   }, function(start, end, label) {
+      //     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      //   });
+      // });
+    
+        $(function() {
+        $('input[name="daterange"]').daterangepicker({
+                "linkedCalendars": false,
+                "showCustomRangeLabel": false,
+                "showCalendar":false,
+                ranges: {
+                            'Past Week': [moment().subtract(6, 'days'), moment()],            
+                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                            'Previous Sem': ['01-08-2018','01-08-2019'],
+                        },
+                      locale: {
+                cancelLabel: 'Clear',
+                   },
+
+                
+            }, function(start, end, label) {
+              console.log('New date range selected: ' + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY') + ' (predefined range: ' + label + ')');
+            });
+      });
+
+</script>
+<script>
       $(function() {
         $('input[name="daterange"]').daterangepicker({
-          opens: 'left'
-        }, function(start, end, label) {
-          console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+          timePicker: false,
+          datePicker:false,
+          "linkedCalendars": false,
+          "showCustomRangeLabel": false,
+            ranges: {
+                        'Past Week': [moment().subtract(6, 'days'), moment()],            
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                        'Previous Sem': ['01-08-2018','01-08-2019'],
+                    },
+                  locale: {
+            cancelLabel: 'Clear',
+               },
+
+          startDate: moment().add(1,'days'),
+          endDate: moment().add(1,'days'),
+          minDate: moment().add(1,'days'),
+          locale: {
+            format: 'DD/MM/YYYY'
+          }
         });
       });
-    </script>
+     </script> 
 
 </body>
 </html>

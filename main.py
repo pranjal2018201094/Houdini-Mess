@@ -12,6 +12,8 @@ import json
 from flask import jsonify
 import re
 from flask import session as login_session
+from dateutil.relativedelta import relativedelta
+
 import os
 app = Flask(__name__)
 # Set the secret key to some random bytes. Keep this really secret!
@@ -42,6 +44,56 @@ def return_data():
     print(file_name)
     with open(file_name, "r") as input_data:
         return input_data.read()
+
+###################################################################################
+
+
+@app.route('/view_bill', methods=['GET','POST'])
+def view_bill():
+    
+    if request.method=='POST':
+
+        if request.form['options']== 'sem':
+            start = '01-08-2018'
+            end = datetime.datetime.today().strftime('%d-%m-%Y')
+            op = "Bill Till current Semester"
+
+        elif request.form['options'] == 'month':
+            x=datetime.datetime.today()+ relativedelta(months=-1)
+            y = x+relativedelta(months=1)
+            z = x.strftime('%d-%m-%Y')
+            start = '01'+z[2:]
+            e = datetime.datetime.strptime(start,"%d-%m-%Y")
+            y = e+relativedelta(months=1)
+            end=y.strftime('%d-%m-%Y')
+            op = "Past Month ( "+start+" /  "+end+" )"
+        
+        elif request.form['options'] == 'week':
+            start = datetime.datetime.today()+datetime.timedelta(days=-1)
+            start=(start+datetime.timedelta(weeks=-1)).strftime('%d-%m-%Y')
+            end = datetime.datetime.today().strftime('%d-%m-%Y')
+            op = "Past Week ( "+start+" /  "+end+" )"
+        value  = dbHandler.retrieveBill(session['username'],start,end)
+
+        
+
+        to = value[0]
+        tc = value[1]
+        b = value[2]
+        l = value[3]
+        s = value[4]
+        d = value[5]
+        meals = value[6]
+        return render_template("viewbill.html",total=meals,operation=op,bill=to,cancelled=tc,b=b,l=l,s=s,d=d)
+
+
+    if 'username' in session:
+        return render_template("viewbill_data.html")
+
+    return redirect(url_for('login'))
+
+
+
 
 ###################################################################################
     
@@ -131,12 +183,7 @@ def view_registration():
         return redirect(url_for('login'))
 
 ############################# home/change_registration ##################
-@app.route('/home/view_bill',methods=['GET','POST'])
-def view_bill():
-    if 'username' in session:
-        return render_template('view_bill.html')
-    else:
-        return redirect(url_for('login'))
+
 
 ############################# home/change_registration ##################
 @app.route('/home/feedback',methods=['GET','POST'])

@@ -427,6 +427,7 @@ def updateMess(request):
     con.close()
     return not row
 
+########################################################################################################
 
 #############################################################################################################
 
@@ -674,3 +675,210 @@ def retrieveMessMenuWest(username):
 
 
 ########################################################################################################
+
+
+def retrieveBill(username,start,end):
+    ## Calculate Bill
+    # username = 'zero'
+    con = sql.connect("user.db")
+    cur = con.cursor()
+    # cur.execute("Select * from user_info WHERE username=?",(username))
+    # sqlQuery = "select username from user_info where (username ='" + request.form['username'] + "')"
+    sqlQuery = "select * from user_info where (username ='" + username + "')"
+    cur = con.cursor()
+    cur.execute(sqlQuery)
+    row = cur.fetchone()
+    dictionary = ast.literal_eval(row[6])
+    con.close()
+
+    con = sql.connect("admin.db")
+    cur = con.cursor()
+    cur.execute("Select price from view_bill WHERE Mess='North'")
+    n = cur.fetchone()
+    north = ast.literal_eval(n[0])
+    cur.execute("Select * from view_bill WHERE Mess='South'")
+    s = cur.fetchone()
+    south = ast.literal_eval(s[1])
+    cur.execute("Select * from view_bill WHERE Mess='East'")
+    n = cur.fetchone()
+    east = ast.literal_eval(n[1])
+    cur.execute("Select * from view_bill WHERE Mess='West'")
+    n = cur.fetchone()
+    west = ast.literal_eval(n[1])
+    con.close()
+
+    # for key in dictionary:
+    
+    end = datetime.datetime.strptime(end,"%d-%m-%Y")
+    start = datetime.datetime.strptime(start,"%d-%m-%Y")
+    count = (end-start).days
+
+    breakfast = 0
+    lunch = 0
+    snacks = 0
+    dinner = 0
+    bre = [0,0,0,0]
+    lun = [0,0,0,0]
+    sna = [0,0,0,0]
+    din = [0,0,0,0]
+    cb = 0 
+    cl = 0
+    cd = 0
+    cs = 0
+    ccb = 0
+    ccl = 0
+    ccs = 0
+    ccd = 0
+
+    while count>0:
+        
+        day = start.strftime('%d-%m-%Y')
+        meals = dictionary[day]
+        
+        b = meals[0]
+        l = meals[1]
+        s = meals[2]
+        d = meals[3]
+        
+        if b.lower() == 'north':
+            t = north[day]
+            bre[0]=bre[0]+1
+            cb = cb+1
+            breakfast = breakfast + int(t[0])
+        elif b.lower() == 'south':
+            cb = cb+1
+            bre[1]=bre[1]+1
+            t = south[day]
+            breakfast = breakfast + int(t[0])
+        elif b.lower() == 'east':
+            cb = cb+1
+            bre[2]=bre[2]+1
+            t = east[day]
+            breakfast = breakfast + int(t[0])
+        elif b.lower() == 'west':
+            cb = cb+1
+            bre[3]=bre[3]+1
+            t = west[day]
+            breakfast = breakfast + int(t[0])
+        else: 
+            ccb = ccb+1
+            
+        if l.lower() == 'north':
+            t = north[day]
+            lun[0]=lun[0]+1
+            cl = cl+1
+            lunch = lunch + int(t[1])
+        elif l.lower() == 'south':
+            cl = cl+1
+            lun[1]=lun[1]+1
+            t = south[day]
+            lunch = lunch + int(t[1])
+        elif l.lower() == 'east':
+            cl = cl+1
+            lun[2]=lun[2]+1
+            t = east[day]
+            lunch = lunch + int(t[1])
+        elif l.lower() == 'west':
+            cl = cl+1
+            lun[3]=lun[3]+1
+            t = west[day]
+            lunch = lunch + int(t[1])
+        else: 
+            ccl = ccl+1    
+        
+        if s.lower() == 'north':
+            t = north[day]
+            sna[0]=sna[0]+1
+            cs = cs+1
+            snacks = snacks + int(t[2])
+        elif s.lower() == 'south':
+            cs = cs+1
+            sna[1]=sna[1]+1
+            t = south[day]
+            snacks = snacks + int(t[2])
+        elif s.lower() == 'east':
+            t = east[day]
+            sna[2]=sna[2]+1
+            cs = cs+1
+            snacks = snacks + int(t[2])
+        elif s.lower() == 'west':
+            t = west[day]
+            sna[3]=sna[3]+1
+            cs = cs+1
+            snacks = snacks + int(t[2])
+        else: 
+            ccs = ccs+1    
+            
+        if d.lower() == 'north':
+            t = north[day]
+            din[0]=din[0]+1
+            cd = cd+1
+            dinner = dinner + int(t[3])
+        elif d.lower() == 'south':
+            t = south[day]
+            din[1]=din[1]+1
+            cd = cd+1
+            dinner = dinner + int(t[3])
+        elif d.lower() == 'east':
+            t = east[day]
+            din[2]=din[2]+1
+            cd = cd+1
+            dinner = dinner + int(t[3])
+        elif d.lower() == 'west':
+            t = west[day]
+            din[3]=din[3]+1
+            cd = cd+1
+            dinner = dinner + int(t[3])
+        else:
+            ccd = ccd+1
+        
+        start=start + datetime.timedelta(days=1)
+        count=count-1
+        totalbill = breakfast+lunch+snacks+dinner
+        totalmeal = cb+cl+cs+cd
+        totalcancel = ccb+ccl+ccd+ccs
+        b = [breakfast,cb,ccb,bre]
+        l = [lunch,cl,ccl,lun]
+        s = [snacks,cs,ccs,sna]
+        d = [dinner,cd,ccd,din]
+    return [totalbill,totalcancel,b,l,s,d,totalmeal]
+
+
+
+############################################################################################
+
+def updateMessMenu(mess_data):
+        
+    mess = mess_data.capitalize()
+    con = sql.connect("admin.db")
+    cur = con.cursor()
+
+    date = datetime.datetime(2018,8,1,12,4,5)
+    end = datetime.datetime(2019,8,1,12,4,5)
+
+    dfrom = date.strftime("%d-%m-%Y")
+    # dateto = datetime.datetime(2018,8,1,12,4,5)
+    date_end = date + datetime.timedelta(days=365)
+    dto = date_end.strftime("%d-%m-%Y")
+    # print(dateto)
+
+    sqlq = "select Bill from mess_menu WHERE (mess = '" + mess +"')"
+    # print(sqlq)
+    cur.execute(sqlq)
+
+    bill = cur.fetchone()
+    dictionary = ast.literal_eval(bill[0])
+    meal =[]
+    for key in dictionary:
+            meal.append(dictionary[key])
+    start = datetime.datetime.today()+datetime.timedelta(days=1)
+    count = (end-start).days
+
+    while count<0:
+        day = start.strftime('%d-%m-%Y')
+        dictionary[day]=meal
+        start=start + datetime.timedelta(days=1)
+        count = count-1
+    sqlq ="UPDATE view_bill SET price = ? WHERE (Mess = ?)"
+    cur.execute(sqlq,(str(dictionary),mess))
+
